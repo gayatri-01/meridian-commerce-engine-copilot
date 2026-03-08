@@ -8,6 +8,10 @@
       <a routerLink="/chat" routerLinkActive="active">Virtual Category Manager</a>
     </nav>
   </header>
+  <div class="store-context">
+    <span class="context-label">Kirana Store</span>
+    <span>{{ storeName }} | {{ storeLocation }}</span>
+  </div>
 
   <main>
     <router-outlet></router-outlet>

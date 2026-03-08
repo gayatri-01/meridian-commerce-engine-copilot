@@ -9,4 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css',
 })
-export class LandingComponent {}
+export class LandingComponent {
+  readonly storeName = 'Shree Ganesh Stores';
+  readonly storeLocation = 'Dombivli East';
+}
