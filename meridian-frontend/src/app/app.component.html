@@ -1,0 +1,15 @@
+<div class="shell">
+  <header class="topbar">
+    <h1>Meridian Commerce Engine</h1>
+    <nav>
+      <a routerLink="/" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Overview</a>
+      <a routerLink="/strategy" routerLinkActive="active">Hyperlocal Strategy</a>
+      <a routerLink="/forecast" routerLinkActive="active">Predictive Forecasts</a>
+      <a routerLink="/chat" routerLinkActive="active">Virtual Category Manager</a>
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

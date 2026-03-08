@@ -1,0 +1,30 @@
+<section class="panel">
+  <h2>Virtual Category Manager</h2>
+  <p class="muted">Conversational RAG over FMCG history using Bedrock Knowledge Bases.</p>
+
+  <article class="chat-box">
+    <div class="messages">
+      <p *ngIf="!messages.length" class="muted">Start by asking about pack_type, promotions, or SKU-level restocking.</p>
+      <div *ngFor="let m of messages" class="msg" [class.user]="m.role === 'user'" [class.assistant]="m.role === 'assistant'">
+        <div class="msg-head">{{ m.role === 'user' ? 'You' : 'Manager AI' }}</div>
+        <div class="msg-body" [innerHTML]="formatMessage(m.content)"></div>
+      </div>
+    </div>
+
+    <div class="composer">
+      <textarea [(ngModel)]="prompt" rows="3" placeholder="Ask an inventory question"></textarea>
+      <button (click)="ask()" [disabled]="loading">{{ loading ? 'Thinking...' : 'Send' }}</button>
+    </div>
+
+    <div class="suggestions">
+      <label>Quick prompts</label>
+      <div class="suggestion-grid">
+        <button type="button" class="suggestion-btn" *ngFor="let q of suggestedQuestions" (click)="applySuggestion(q)">
+          {{ q }}
+        </button>
+      </div>
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </article>
+</section>

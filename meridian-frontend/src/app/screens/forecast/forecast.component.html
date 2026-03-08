@@ -1,0 +1,59 @@
+<section class="panel">
+  <div class="head">
+    <h2>Predictive Forecasts</h2>
+    <button (click)="loadForecast()" [disabled]="loading">{{ loading ? 'Loading...' : 'Run 15-Day Forecast' }}</button>
+  </div>
+
+  <p class="muted" *ngIf="model">Model: {{ model }}</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <article class="box">
+    <h3>Demand Projection (2026) vs 2023 Baseline Window</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Predicted Units</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of points | slice:0:120">
+            <td>{{ p.date }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.predicted_units_sold | number:'1.0-0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="box">
+    <h3>Stock-to-Sales Risk</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Category</th>
+            <th>Demand (15d)</th>
+            <th>Stock</th>
+            <th>Ratio</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of risks">
+            <td>{{ r.sku_id }}</td>
+            <td>{{ r.category }}</td>
+            <td>{{ r.projected_demand_15d | number:'1.0-0' }}</td>
+            <td>{{ r.stock_available | number:'1.0-0' }}</td>
+            <td [class.bad]="r.stock_to_sales_ratio < 1">{{ r.stock_to_sales_ratio }}</td>
+            <td>{{ r.risk_level }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>

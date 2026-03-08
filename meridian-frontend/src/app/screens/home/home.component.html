@@ -1,0 +1,54 @@
+<section class="panel">
+  <div class="head">
+    <h2>Hyperlocal Strategy</h2>
+    <button (click)="refresh()" [disabled]="loading">{{ loading ? 'Generating...' : 'Generate Insights' }}</button>
+  </div>
+
+  <p class="muted">Anchor date: {{ anchorDate }}</p>
+
+  <article class="box intro" *ngIf="!loading && !cards.length && !renderedSteps.length">
+    <h3>What You Get</h3>
+    <p class="muted">
+      Click <strong>Generate Insights</strong> to run the 15-day intelligence cycle. We will analyze weather, mandi prices,
+      local events, festival calendar, and historical FMCG baselines before showing final actions.
+    </p>
+    <div class="intro-grid">
+      <div>
+        <p class="label">Live Feed</p>
+        <p>Step-by-step tool execution trace for transparency.</p>
+      </div>
+      <div>
+        <p class="label">Insight Cards</p>
+        <p>Category, insight, action, and rationale for quick decisions.</p>
+      </div>
+      <div>
+        <p class="label">Coverage</p>
+        <p>15-day forward recommendations grounded in historical context.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="grid">
+    <article class="box">
+      <h3>Live Reasoning Feed</h3>
+      <div class="feed">
+        <p *ngIf="!renderedSteps.length && !loading" class="muted">Press Refresh to run a new strategy cycle.</p>
+        <p *ngFor="let step of renderedSteps">{{ step.message }}</p>
+      </div>
+    </article>
+
+    <article class="box">
+      <h3>Insight Cards</h3>
+      <p *ngIf="loading" class="muted">Waiting for final recommendations...</p>
+      <p *ngIf="error" class="error">{{ error }}</p>
+      <div class="cards">
+        <div class="card" *ngFor="let c of cards">
+          <p class="label">{{ c.category }}</p>
+          <p><strong>Insight:</strong> {{ c.insight }}</p>
+          <p><strong>Action:</strong> {{ c.action }}</p>
+          <p><strong>Rationale:</strong> {{ c.rationale }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

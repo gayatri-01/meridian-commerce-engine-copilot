@@ -1,0 +1,19 @@
+:root {
+  --bg-primary: #0d141d;
+  --bg-card: #111b27;
+  --border-soft: #243243;
+  --text-primary: #e8eef7;
+  --text-secondary: #9fb2c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
